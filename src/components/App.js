@@ -6,6 +6,21 @@ function App() {
   const [questions, setQuestions] = useState(quiz);
   const [currentQuestionId, setCurrentQuestion] = useState(1);
   const [score, setScore] = useState(0);
+
+  function addQuestion() {
+    const newQuestion = {
+      id: questions.length + 1,
+      text: "New question",
+      answers: [
+        { id: 1, text: "Answer 1", correct: false },
+        { id: 2, text: "Answer 2", correct: true },
+        { id: 3, text: "Answer 3", correct: false },
+        { id: 4, text: "Answer 4", correct: false },
+      ],
+    };
+    setQuestions(prevQuestions => [...prevQuestions, newQuestion]);
+  }
+
   const currentQuestion = questions.find((q) => q.id === currentQuestionId);
 
   function handleQuestionAnswered(correct) {
@@ -34,6 +49,7 @@ function App() {
           </>
         )}
       </section>
+      <button onClick={addQuestion}>Add Question</button>
     </main>
   );
 }
